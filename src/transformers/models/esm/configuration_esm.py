@@ -165,6 +165,8 @@ class EsmConfig(PreTrainedConfig):
         "mask-dropout" scaling trick, which will scale the inputs depending on the number of masked tokens.
     emb_layer_norm_before (`bool`, *optional*):
         Whether to apply layer normalization after embeddings but before the main stem of the network.
+    rope_theta (`float`, defaults to 10000.0):
+        The base period of the RoPE embeddings. Only used when `position_embedding_type` is set to `"rotary"`.
     token_dropout (`bool`, defaults to `False`):
         When this is enabled, masked tokens are treated as if they had been dropped out by input dropout.
     vocab_list (`list`, *optional*):
@@ -200,6 +202,7 @@ class EsmConfig(PreTrainedConfig):
     hidden_dropout_prob: float | None = 0.1
     attention_probs_dropout_prob: float | None = 0.1
     max_position_embeddings: int = 1026
+    rope_theta: float = 10000.0
     initializer_range: float = 0.02
     layer_norm_eps: float | None = 1e-12
     position_embedding_type: str | None = "absolute"
